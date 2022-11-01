@@ -1,0 +1,71 @@
+#!/bin/bash
+
+DISK=$1
+
+# ------------------- system estential config
+
+loadkeys en
+timedatectl set-ntp true
+
+cat >/etc/pacman.d/mirrorlist <<END
+Server = http://eu.mirror.archlinuxarm.org/\$arch/\$repo
+END
+
+pacman -Syyyu --noconfirm
+
+# ------------------- system estential config
+
+echo -e 'n\n\n\n+333M\nef00\np\nn\n\n\n+2G\n8200\np\nn\n\n\n\n830e\np\nw\ny\n' | gdisk /dev/${DISK}
+# echo -e 'n\n\n\n+333M\nef00\np\nn\n\n\n+2G\n8200\np\nn\n\n\n\n8300\np\nw\ny\n' | gdisk /dev/${DISK}
+
+
+mkfs.fat -F32 /dev/${DISK}1
+mkswap /dev/${DISK}2
+swapon /dev/${DISK}2
+mkfs.btrfs -L archlinux /dev/${DISK}3
+# mkfs.btrfs /dev/${DISK}3
+
+mount /dev/${DISK}3 /mnt
+
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@snapshots
+btrfs subvolume create /mnt/@cache
+btrfs subvolume create /mnt/@libvirt
+btrfs subvolume create /mnt/@log
+btrfs subvolume create /mnt/@tmp
+
+# ------------------- system estential config
+
+umount /mnt
+
+# export sv_opts="rw,noatime,compress-force=zstd:1,space_cache=v2"
+sv_opts="rw,noatime,compress-force=zstd:1,space_cache=v2"
+
+mount -o ${sv_opts},subvol=@ /dev/${DISK}3 /mnt
+mkdir -p /mnt/{boot,home,.snapshots,var/cache,var/lib/libvirt,var/log,var/tmp}
+
+mount -o ${sv_opts},subvol=@home /dev/${DISK}3 /mnt/home
+mount -o ${sv_opts},subvol=@snapshots /dev/${DISK}3 /mnt/.snapshots
+mount -o ${sv_opts},subvol=@cache /dev/${DISK}3 /mnt/var/cache
+mount -o ${sv_opts},subvol=@libvirt /dev/${DISK}3 /mnt/var/lib/libvirt
+mount -o ${sv_opts},subvol=@log /dev/${DISK}3 /mnt/var/log
+mount -o ${sv_opts},subvol=@tmp /dev/${DISK}3 /mnt/var/tmp
+mount /dev/${DISK}1 /mnt/boot
+
+# ------------------- system estential config
+
+pacstrap /mnt base linux linux-firmware btrfs-progs
+
+# ------------------- system estential config
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+cp install.sh /mnt/root/
+
+arch-chroot /mnt /usr/bin/bash /root/install.sh
+
+mv /root/M1-ARM-ARCHLINUX /mnt/root/
+
+poweroff
+

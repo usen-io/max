@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# ------------------- install vars
+
+USERNAME=$1
+
+# ------------------- user config
+
+useradd -m -g users -G audio,video,network,wheel,storage,rfkill -s /bin/bash ${USERNAME}
+printf "toor\ntoor\n" | passwd ${USERNAME}
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+su -c 'mkdir /home/${USERNAME}/.config' ${USERNAME}
+
+# ------------------- user pkg manager paru
+
+su -c 'cd /tmp && sudo pacman -S --noconfirm base-devel && git clone https://aur.archlinux.org/paru.git && cd paru && makepkg -is --noconfirm' ${USERNAME}
+
+# ------------------- blackarch
+
+cd /tmp
+curl -O https://blackarch.org/strap.sh
+chmod +x strap.sh
+sudo ./strap.sh
+
+# ------------------- testing paru
+
+su -c 'paru -Syu --noconfirm' ${USERNAME}
+su -c 'paru -S rustscan nerd-fonts-jetbrains-mono rofi --noconfirm' ${USERNAME}
+
+# ------------------- clean all cache packages
+
+pacman -Scc --noconfirm
+
+# ------------------------------------------------- snapper checkpoint
+
+snapper -c root create -d "Base setup: User"
+snapper -c home create -d "Base setup: User"

@@ -1,0 +1,97 @@
+#!/bin/bash
+
+INSTALL="paru -S --noconfirm"
+
+# ----------------------------------- lightdm
+
+${INSTALL} lightdm lightdm-gtk-greeter qtile
+
+# Set default lightdm greeter to lightdm-gtk-greeter
+sudo sed -i 's/^\(#?greeter\)-session\s*=\s*\(.*\)/greeter-session = lightdm-gtk-greeter #\1/ #\2g' /etc/lightdm/lightdm.conf
+
+## # MAC M1 fine tunning
+## # Set resolution of lightdm
+## sudo sed -i 's/#display-setup-script=/display-setup-script=xrandr --output Virtual-1 --mode 1920x1200/' /etc/lightdm/lightdm.conf
+
+sudo systemctl enable lightdm.service
+
+# ----------------------------------- qtile
+
+sudo pip3 install dbus-next cffi mach
+${INSTALL} python-xcffib python-cairocffi libffi
+${INSTALL} qtile
+
+git clone https://github.com/usen-io/dotconf-qtile.git ~/.config/qtile
+
+# ----------------------------------- gnome
+
+${INSTALL} gnome-shell nautilus gnome-tweak-tool gnome-control-center xdg-user-dirs
+
+# ----------------------------------- xrdp
+
+${INSTALL} xorgxrdp xrdp
+
+openssl req -x509 -newkey rsa:2048 -nodes -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 3650 -subj '/CN=www.mydom.com/O=My Company Name LTD./C=CH'
+
+cat >$HOME/.xinitrc <<END
+
+if [ -f "" ]; then
+    xmodmap ""
+fi
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
+ for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+  [ -x "" ] && . ""
+ done
+ unset f
+fi
+
+export XDG_XSESSION_TYPE=x11
+export XDG_BACKEND=x11
+
+exec qtile start > ~/.xsession.log 2>&1
+
+END
+
+# chmod +x $HOME/.xinitrc
+
+sudo sed -i 's/#export LANG=$LANG/export $(dbus-launch)/g' /etc/xrdp/startwm.sh
+
+sudo systemctl enable xrdp.service
+sudo systemctl enable xrdp-sesman.service
+
+# ----------------------------------- ulauncher
+
+### cd /tmp
+### git clone https://aur.archlinux.org/ulauncher.git && cd ulauncher && makepkg -is --noconfirm
+### cd /tmp && rm -rf ulauncher
+
+# dependency for wayland
+${INSTALL} wmctrl
+
+${INSTALL} ulauncher
+
+# ----------------------------------- customuser
+
+cat >$HOME/.xprofile <<END
+setxkbmap en
+END
+
+
+# ----------------------------------- clipboard copy-paste sharing spice VMs
+
+${INSTALL} spice-vdagent xf86-video-qxl
+
+# ----------------------------------- browser
+
+${INSTALL} chromium
+
+# ----------------------------------- extras
+
+${INSTALL} snapper-gui-git
+
+# ------------------------------------------------- snapper checkpoint
+
+snapper -c root create -d "Base setup: Tiling"
+snapper -c home create -d "Base setup: Tiling"
+

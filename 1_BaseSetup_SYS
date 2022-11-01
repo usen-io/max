@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# ------------------- install vars
+
+HOSTNAME=$1
+
+# ------------------- make base snapshot
+
+hostnamectl hostname ${HOSTNAME}
+
+# ------------------- make base snapshot
+# make a instant
+# https://www.dwarmstrong.org/btrfs-snapshots-rollbacks/
+
+umount /.snapshots
+rm -rf /.snapshots
+
+snapper -c root create-config /
+snapper -c home create-config /home
+
+btrfs subvolume delete /.snapshots
+
+mkdir /.snapshots
+
+mount -a
+
+chmod 750 /.snapshots
+
+chown :wheel /.snapshots
+
+sed -i 's/ALLOW_GROUPS=""/ALLOW_GROUPS="wheel"/' /etc/snapper/configs/root
+sed -i 's/ALLOW_GROUPS=""/ALLOW_GROUPS="wheel"/' /etc/snapper/configs/home
+
+# ------------------------------------------------- snapper checkpoint
+
+snapper -c root create -d "Base setup: System"
+snapper -c home create -d "Base setup: System"
+

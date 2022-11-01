@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# ------------------- install vars
+
+username=$1
+INSTALL="paru -S --noconfirm"
+
+# ------------------- essentials
+
+${INSTALL} zsh zsh-completions wezterm alacritty tmux htop ttf-font-awesome ttf-hack
+
+# ------------------- wireguard vpn
+
+${INSTALL} wireguard-tools openresolv
+
+# ------------------- extas
+
+# oficial
+${INSTALL} mtr remmina sshpass unzip dnsutils xclip keepassxc flameshot filezilla screenkey
+
+# community
+${INSTALL} tmuxinator downgrade topgrade z.lua gnome-shell-extension-tray-icons activitywatch-bin git-extras
+
+# ------------------- syncthing
+
+${INSTALL} syncthing
+
+mkdir $HOME/ubi
+
+sudo systemctl enable --now syncthing@${username}.service
+
+sed -i 's/8384/8989/' /home/${username}/.config/syncthing/config.xml
+
+# ------------------- shell
+
+sudo usermod --shell /usr/bin/zsh ${username}
+
+# ------------------- user bin
+
+ln -sf ~/ubi/dot/linux/.local/bin ~/.local
+
+# ------------------- ohmyzsh
+
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+rm -rf ~/.zinit
+
+# ------------------- ohmyzsh theme
+
+curl https://raw.githubusercontent.com/dikiaap/dotfiles/master/.oh-my-zsh/themes/oxide.zsh-theme --output ~/.oh-my-zsh/themes/oxide.zsh-theme
+
+# ------------------- zinit plugins manager
+
+sh -c "$(curl -fsSL https://git.io/zinit-install)"
+
+# ------------------------------------------------- snapper checkpoint
+
+snapper -c root create -d "Base setup: Terminal"
+snapper -c home create -d "Base setup: Terminal"
+
