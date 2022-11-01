@@ -27,9 +27,9 @@ git clone https://github.com/usen-io/dotconf-qtile.git ~/.config/qtile
 
 ${INSTALL} gnome-shell nautilus gnome-tweak-tool gnome-control-center xdg-user-dirs
 
-# ----------------------------------- xrdp
+# ----------------------------------- rdp and xrdp
 
-${INSTALL} xorgxrdp xrdp
+${INSTALL} xorgxrdp xrdp remmina freerdp
 
 openssl req -x509 -newkey rsa:2048 -nodes -keyout /etc/xrdp/key.pem -out /etc/xrdp/cert.pem -days 3650 -subj '/CN=www.mydom.com/O=My Company Name LTD./C=CH'
 

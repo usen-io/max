@@ -16,7 +16,7 @@ ${INSTALL} wireguard-tools openresolv
 # ------------------- extas
 
 # oficial
-${INSTALL} mtr remmina sshpass unzip dnsutils xclip keepassxc flameshot filezilla screenkey
+${INSTALL} mtr sshpass unzip dnsutils xclip keepassxc flameshot filezilla screenkey
 
 # community
 ${INSTALL} tmuxinator downgrade topgrade z.lua gnome-shell-extension-tray-icons activitywatch-bin git-extras
