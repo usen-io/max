@@ -15,7 +15,7 @@ pacman -Syyyu --noconfirm
 
 # ------------------- system estential config
 
-echo -e 'n\n\n\n+333M\nef00\np\nn\n\n\n+2G\n8200\np\nn\n\n\n\n830e\np\nw\ny\n' | gdisk /dev/${DISK}
+echo -e 'n\n\n\n+333M\nef00\np\nn\n\n\n+2G\n8200\np\nn\n\n\n\n8300\np\nw\ny\n' | gdisk /dev/${DISK}
 
 mkfs.fat -F32 /dev/${DISK}1
 mkswap /dev/${DISK}2
@@ -57,9 +57,9 @@ pacstrap /mnt base linux linux-firmware btrfs-progs
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-cp arch-chroot/install_arm.sh /mnt/root/
+cp arch-chroot/install_x64.sh /mnt/root/
 
-arch-chroot /mnt /usr/bin/bash /root/install_arm.sh
+arch-chroot /mnt /usr/bin/bash /root/install_x64.sh
 
 mv /root/max /mnt/root/
 

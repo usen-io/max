@@ -1,6 +1,11 @@
 #!/bin/bash
 
+# ------------------- install vars
+
 INSTALL="paru -S --noconfirm"
+
+reflector --country Germany --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+pacman -Syyyu --noconfirm
 
 # ----------------------------------- lightdm
 
