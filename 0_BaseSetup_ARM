@@ -51,7 +51,7 @@ mount /dev/${DISK}1 /mnt/boot
 
 # ------------------- system estential config
 
-pacstrap /mnt base linux linux-firmware btrfs-progs
+pacstrap /mnt base linux linux-firmware linux-headers btrfs-progs
 
 # ------------------- system estential config
 
