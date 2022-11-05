@@ -8,6 +8,27 @@ HOSTNAME=$1
 
 hostnamectl hostname ${HOSTNAME}
 
+
+# ------------------- setup NTP
+
+mkdir /etc/systemd/timesyncd.conf.d/
+
+dd of=/etc/systemd/timesyncd.conf.d/servers.conf << EOF
+[Time]
+NTP=hora.roa.es 0.es.pool.ntp.org 1.es.pool.ntp.org 2.es.pool.ntp.org 3.es.pool.ntp.org
+FallbackNTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org
+EOF
+
+timedatectl set-timezone Europe/Madrid
+
+systemctl restart systemd-timesyncd.service
+
+sleep 3
+
+timedatectl set-ntp true
+
+timedatectl show-timesync --all
+
 # ------------------- make base snapshot
 # make a instant
 # https://www.dwarmstrong.org/btrfs-snapshots-rollbacks/
