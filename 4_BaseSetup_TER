@@ -7,7 +7,7 @@ INSTALL="paru -S --noconfirm"
 
 # ------------------- essentials
 
-${INSTALL} zsh zsh-completions usbutils wezterm alacritty tmux htop ttf-font-awesome ttf-hack
+${INSTALL} zsh zsh-completions usbutils wezterm alacritty tmux htop
 
 # ------------------- wireguard vpn
 
@@ -15,7 +15,7 @@ ${INSTALL} wireguard-tools openresolv
 
 # ------------------- fonts
 
-${INSTALL} ttf-hack otf-font-awesome adobe-source-sans-fonts
+${INSTALL} ttf-hack ttf-font-awesome adobe-source-sans-fonts ttf-font-awesome ttf-hac ttf-fira-code
 
 # ------------------- extas
 
