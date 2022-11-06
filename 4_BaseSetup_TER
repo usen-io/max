@@ -13,6 +13,10 @@ ${INSTALL} zsh zsh-completions usbutils wezterm alacritty tmux htop ttf-font-awe
 
 ${INSTALL} wireguard-tools openresolv
 
+# ------------------- fonts
+
+${INSTALL} ttf-hack otf-font-awesome adobe-source-sans-fonts
+
 # ------------------- extas
 
 # oficial
