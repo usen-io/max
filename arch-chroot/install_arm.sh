@@ -5,9 +5,27 @@ hwclock --systohc
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "es_ES.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
-echo "LC_ALL=C" >> /etc/locale.conf
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "LC_COLLATE=en_US.UTF-8" >> /etc/locale.conf
+
+dd of=/etc/locale.conf << EOF  
+LANG=en_US.UTF-8
+LC_CTYPE=en_US.UTF-8
+LC_NUMERIC=en_US.UTF-8
+LC_TIME=en_US.UTF-8
+LC_COLLATE=en_US.UTF-8
+LC_MONETARY=en_US.UTF-8
+LC_MESSAGES=en_US.UTF-8
+LC_PAPER=en_US.UTF-8
+LC_NAME=en_US.UTF-8
+LC_ADDRESS=en_US.UTF-8
+LC_TELEPHONE=en_US.UTF-8
+LC_MEASUREMENT=en_US.UTF-8
+LC_IDENTIFICATION=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+EOF
+
+###  echo "LC_ALL=C" >> /etc/locale.conf
+###  echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+###  echo "LC_COLLATE=en_US.UTF-8" >> /etc/locale.conf
 echo "max-ign" > /etc/hostname
 echo -e "127.0.0.1       localhost\n::1             localhost\n127.0.1.1       localhost" >> /etc/hosts
 

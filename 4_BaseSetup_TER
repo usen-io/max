@@ -15,7 +15,7 @@ ${INSTALL} wireguard-tools openresolv
 
 # ------------------- fonts
 
-${INSTALL} ttf-hack ttf-font-awesome adobe-source-sans-fonts ttf-font-awesome ttf-hac ttf-fira-code
+${INSTALL} gnu-free-fonts ttf-hack ttf-font-awesome adobe-source-sans-fonts ttf-font-awesome ttf-hac ttf-fira-code ttf-meslo
 
 # ------------------- extas
 
