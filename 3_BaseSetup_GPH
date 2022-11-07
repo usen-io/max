@@ -22,7 +22,7 @@ sudo systemctl enable lightdm.service
 
 # ----------------------------------- qtile
 
-sudo pip3 install dbus-next cffi mach
+sudo pip3 install dbus-next cffi mach requests
 ${INSTALL} python-xcffib python-cairocffi libffi
 ${INSTALL} qtile
 
