@@ -22,7 +22,9 @@ sudo systemctl enable lightdm.service
 
 # ----------------------------------- qtile
 
-sudo pip3 install dbus-next cffi mach requests python-gitlab github
+sudo pip3 install dbus-next cffi mach requests python-gitlab
+sudo pip3 install -r https://raw.githubusercontent.com/brpaz/ulauncher-github/master/requirements.txt
+
 ${INSTALL} python-xcffib python-cairocffi libffi
 ${INSTALL} qtile
 
