@@ -56,6 +56,10 @@ curl https://raw.githubusercontent.com/dikiaap/dotfiles/master/.oh-my-zsh/themes
 
 sh -c "$(curl -fsSL https://git.io/zinit-install)"
 
+# ------------------------------------------------- extendable version manager 
+
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+
 # ------------------------------------------------- snapper checkpoint
 
 snapper -c root create -d "Base setup: Terminal"
