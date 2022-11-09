@@ -25,6 +25,14 @@ ${INSTALL} mtr sshpass unzip dnsutils xclip keepassxc flameshot filezilla screen
 # community
 ${INSTALL} tmuxinator downgrade topgrade z.lua gnome-shell-extension-tray-icons activitywatch-bin git-extras
 
+# ------------------- ansible
+
+# oficial
+${INSTALL} ansible
+
+# # community
+# ${INSTALL} tmuxinator downgrade topgrade z.lua gnome-shell-extension-tray-icons activitywatch-bin git-extras
+
 # ------------------- syncthing
 
 ${INSTALL} syncthing
