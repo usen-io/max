@@ -32,7 +32,7 @@ git clone https://github.com/usen-io/dotconf-qtile.git ~/.config/qtile
 
 # ----------------------------------- gnome
 
-${INSTALL} gnome-shell nautilus gnome-tweak-tool gnome-control-center xdg-user-dirs
+${INSTALL} gnome-shell nautilus gnome-tweak-tool gnome-control-center xdg-user-dirs gparted
 
 # ----------------------------------- rdp and xrdp
 
@@ -95,7 +95,7 @@ ${INSTALL} chromium
 
 # ----------------------------------- extras
 
-${INSTALL} snapper-gui-git
+${INSTALL} snapper-gui-git rpi-imager
 
 # ------------------------------------------------- snapper checkpoint
 
