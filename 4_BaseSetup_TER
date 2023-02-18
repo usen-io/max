@@ -7,7 +7,7 @@ INSTALL="paru -S --noconfirm"
 
 # ------------------- essentials
 
-${INSTALL} zsh zsh-completions usbutils wezterm kitty alacritty tmux htop tree
+${INSTALL} zsh zsh-completions usbutils wezterm kitty alacritty tmux htop tree rsync
 
 # ------------------- wireguard vpn
 
