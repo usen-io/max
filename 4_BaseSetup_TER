@@ -7,7 +7,7 @@ INSTALL="paru -S --noconfirm"
 
 # ------------------- essentials
 
-${INSTALL} zsh zsh-completions usbutils wezterm kitty alacritty tmux htop tree rsync
+${INSTALL} zsh zsh-completions usbutils wezterm kitty alacritty tmux htop tree rsync git-extras
 
 # ------------------- wireguard vpn
 
@@ -20,7 +20,7 @@ ${INSTALL} gnu-free-fonts ttf-hack ttf-font-awesome adobe-source-sans-fonts ttf-
 # ------------------- extas
 
 # oficial
-${INSTALL} mtr sshpass unzip dnsutils xclip keepassxc flameshot filezilla screenkey
+${INSTALL} mtr sshpass unzip dnsutils xclip keepassxc flameshot filezilla screenkey code
 
 # community
 ${INSTALL} tmuxinator downgrade topgrade z.lua gnome-shell-extension-tray-icons activitywatch-bin git-extras
