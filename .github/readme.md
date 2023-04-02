@@ -18,7 +18,7 @@ Thanks Tobias Powalowski - tpowa: https://archlinux.org/people/developers/#tpowa
     + connected to internet
     + within the iso file placed as a first boot device
     + at least with 9GB of disk storage, 1G of RAM and 1 vCPU
-    + for an easy copy/pase code with a birdget interfce for ssh login from other machine in the same network.
+    + for an easy copy/pate code with a bridged interfce for ssh login from other machine in the same network.
 
 ### preparation: get the installation scripts
 
