@@ -63,6 +63,6 @@ cp arch-chroot/install_arm.sh /mnt/root/
 
 arch-chroot /mnt /usr/bin/bash /root/install_arm.sh
 
-mv /root/max /mnt/root/
+mv /root/max-main /mnt/root/
 
 poweroff

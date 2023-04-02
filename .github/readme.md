@@ -2,8 +2,32 @@
 ---
 aka: MAX
 
+
+## Step 0: preparation
+
+### preparation: get the ISO
+
++ ARM version need to be donwloaded from: https://pkgbuild.com/~tpowa/archboot/web/archboot.html
+Thanks Tobias Powalowski - tpowa: https://archlinux.org/people/developers/#tpowa
+
++ X64 version need to be donwloaded from: https://archlinux.org/download/
+
+### preparation: create a VM or place your metal on the table ;)
+
++  In bouth case the machine need to be:
+  + connected to internet
+  + within the iso file placed as a first boot device
+  + at least with 9GB of disk storage, 1G of RAM and 1 vCPU
+
+
+### preparation: get the installation scripts
+
++  Turn on your machine and place the files to start the installation.
+
 > You need download the files both times, first when you are apply Base Setup and with back after restart the VM.
-> `curl -L -o main.zip https://github.com/usen-io/max/archive/refs/heads/main.zip && bsdtar xvf main.zip && cd max-main`
+> > `curl -L -o main.zip https://github.com/usen-io/max/archive/refs/heads/main.zip && bsdtar xvf main.zip && cd max-main`
+
+## Step 1: running the scripts
 
 
 ```
