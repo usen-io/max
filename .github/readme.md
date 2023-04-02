@@ -15,10 +15,9 @@ Thanks Tobias Powalowski - tpowa: https://archlinux.org/people/developers/#tpowa
 ### preparation: create a VM or place your metal on the table ;)
 
 +  In bouth case the machine need to be:
-  ++ connected to internet
-  ++ within the iso file placed as a first boot device
-  ++ at least with 9GB of disk storage, 1G of RAM and 1 vCPU
-
+    + connected to internet
+    + within the iso file placed as a first boot device
+    + at least with 9GB of disk storage, 1G of RAM and 1 vCPU
 
 ### preparation: get the installation scripts
 
