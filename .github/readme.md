@@ -12,7 +12,7 @@ Thanks Tobias Powalowski - tpowa: https://archlinux.org/people/developers/#tpowa
 
 + X64 version need to be donwloaded from: https://archlinux.org/download/
 
-### preparation: create a VM or place your metal on the table ;)
+### preparation: get your machine ready
 
 +  In both case (ARM/X64) the machine need to be:
     + connected to internet
