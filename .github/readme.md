@@ -14,14 +14,19 @@ Thanks Tobias Powalowski - tpowa: https://archlinux.org/people/developers/#tpowa
 
 ### preparation: create a VM or place your metal on the table ;)
 
-+  In bouth case the machine need to be:
++  In both case (ARM/X64) the machine need to be:
     + connected to internet
     + within the iso file placed as a first boot device
     + at least with 9GB of disk storage, 1G of RAM and 1 vCPU
+    + for an easy copy/pase code with a birdget interfce for ssh login from other machine in the same network.
 
 ### preparation: get the installation scripts
 
 +  Turn on your machine and place the files to start the installation.
++  Affter start the machine use:
+    + `passwd`  command for creatate a root password that let you sign-in via ssh.
+    + `ip -o a` command for retrieve the ip that your need to connect via ssh.
+    + `ssh root@IP-OF-THE-MACHINE` command to get into the target machine. 
 
 > You need download the files both times, first when you are apply Base Setup and with back after restart the VM.
 > > `curl -L -o main.zip https://github.com/usen-io/max/archive/refs/heads/main.zip && bsdtar xvf main.zip && cd max-main`
